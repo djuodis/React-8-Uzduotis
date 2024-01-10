@@ -1,3 +1,4 @@
+import React from "react";
 import {
   FooterWrapper,
   Cards,
@@ -40,13 +41,13 @@ const options = [
   },
 ];
 
-const animation = {
-  hidden: { scale: 0 },
+const container = {
+  hidden: { opacity: 1, scale: 0 },
   visible: {
+    opacity: 1,
     scale: 1,
     transition: {
-      duration: 1,
-      delayChildren: 1,
+      delayChildren: 0.3,
       staggerChildren: 0.2,
     },
   },
@@ -63,9 +64,14 @@ const item = {
 const Footer = () => {
   return (
     <FooterWrapper>
-      <Cards as={motion.div} variants={animation}>
+      <Cards
+        as={motion.div}
+        variants={container}
+        initial="hidden"
+        animate="visible"
+      >
         {options.map((option, index) => (
-          <Card key={index}>
+          <Card key={index} variants={item}>
             <IconWrapper as={motion.a} variants={item}>
               {option.icon}
             </IconWrapper>
